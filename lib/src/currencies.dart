@@ -1535,6 +1535,19 @@ List<Map<String, dynamic>> currencies = [
     "symbol_on_left": false,
   },
   {
+    "code": "XCD",
+    "name": "Eastern Caribbean Dollar",
+    "symbol": "EC\$",
+    "flag": null,
+    "decimal_digits": 2,
+    "number": 951,
+    "name_plural": "Eastern Caribbean dollars",
+    "thousands_separator": ",",
+    "decimal_separator": ".",
+    "space_between_amount_and_symbol": false,
+    "symbol_on_left": true
+  },
+  {
     "code": "YER",
     "name": "Yemen Rial",
     "symbol": "﷼",
