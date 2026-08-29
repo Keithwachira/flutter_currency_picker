@@ -1,7 +1,5 @@
 # Currency picker
 
-[![pub package](https://img.shields.io/pub/v/currency_picker.svg)](https://pub.dev/packages/currency_picker)
-
 A flutter package to select a currency from a list of currencies. 
 
 <img height="600" alt="n1" src="https://raw.githubusercontent.com/Daniel-Ioannou/flutter_currency_picker/master/assets/ReadMe%20Screenshot.png">
@@ -11,7 +9,10 @@ A flutter package to select a currency from a list of currencies.
  Add the package to your pubspec.yaml:
 
  ```yaml
- currency_picker: ^2.0.21
+ currency_picker:
+   git:
+     url: https://github.com/yurisasuke/flutter_currency_picker.git
+     ref: v2.1.0
  ```
  
  In your dart file, import the library:
@@ -31,6 +32,10 @@ showCurrencyPicker(
    },
 );
 ```
+
+Search matches currency codes, names, associated countries, and alternate
+spellings. Obsolete currencies remain available through `CurrencyService`
+for historical records but are not shown for new selections.
 
 ### Parameters:
 * `onSelect`: Called when a currency is select. The currency picker passes the new value to the callback (required)
@@ -66,7 +71,7 @@ showCurrencyPicker(
          prefixIcon: const Icon(Icons.search),
          border: OutlineInputBorder(
            borderSide: BorderSide(
-             color: const Color(0xFF8C98A8).withOpacity(0.2),
+             color: const Color(0x338C98A8),
            ),
          ),
        ),

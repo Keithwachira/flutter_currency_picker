@@ -1,3 +1,10 @@
+## 2.1.0
+
+* Add current ISO 4217 currencies missing from the original catalog.
+* Add country and alternate-spelling search terms.
+* Keep obsolete currencies readable by code while hiding them from new selections.
+* Add currency catalog and search validation tests.
+
 ## 2.0.21
 * Add more currencies:
   - Angolan Kwanza

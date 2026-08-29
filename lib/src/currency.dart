@@ -34,6 +34,14 @@ class Currency {
   ///True if symbol has space with amount
   final bool spaceBetweenAmountAndSymbol;
 
+  ///Additional country names and spellings accepted by search.
+  final List<String> searchTerms;
+
+  ///Whether this currency should be offered for new selections.
+  ///
+  ///Inactive currencies remain addressable by code for historical data.
+  final bool isActive;
+
   bool get isFlagImage => flag?.endsWith('.png') ?? false;
 
   Currency({
@@ -48,32 +56,38 @@ class Currency {
     required this.decimalSeparator,
     required this.thousandsSeparator,
     required this.spaceBetweenAmountAndSymbol,
+    this.searchTerms = const [],
+    this.isActive = true,
   });
 
   Currency.from({required Map<String, dynamic> json})
-      : code = json['code'],
-        name = json['name'],
-        symbol = json['symbol'],
-        number = json['number'],
-        flag = json['flag'],
-        decimalDigits = json['decimal_digits'],
-        namePlural = json['name_plural'],
-        symbolOnLeft = json['symbol_on_left'],
-        decimalSeparator = json['decimal_separator'],
-        thousandsSeparator = json['thousands_separator'],
-        spaceBetweenAmountAndSymbol = json['space_between_amount_and_symbol'];
+    : code = json['code'],
+      name = json['name'],
+      symbol = json['symbol'],
+      number = json['number'],
+      flag = json['flag'],
+      decimalDigits = json['decimal_digits'],
+      namePlural = json['name_plural'],
+      symbolOnLeft = json['symbol_on_left'],
+      decimalSeparator = json['decimal_separator'],
+      thousandsSeparator = json['thousands_separator'],
+      spaceBetweenAmountAndSymbol = json['space_between_amount_and_symbol'],
+      searchTerms = List<String>.from(json['search_terms'] ?? const []),
+      isActive = json['is_active'] ?? true;
 
   Map<String, dynamic> toJson() => {
-        'code': code,
-        'name': name,
-        'symbol': symbol,
-        'number': number,
-        'flag': flag,
-        'decimal_digits': decimalDigits,
-        'name_plural': namePlural,
-        'symbol_on_left': symbolOnLeft,
-        'decimal_separator': decimalSeparator,
-        'thousands_separator': thousandsSeparator,
-        'space_between_amount_and_symbol': spaceBetweenAmountAndSymbol,
-      };
+    'code': code,
+    'name': name,
+    'symbol': symbol,
+    'number': number,
+    'flag': flag,
+    'decimal_digits': decimalDigits,
+    'name_plural': namePlural,
+    'symbol_on_left': symbolOnLeft,
+    'decimal_separator': decimalSeparator,
+    'thousands_separator': thousandsSeparator,
+    'space_between_amount_and_symbol': spaceBetweenAmountAndSymbol,
+    'search_terms': searchTerms,
+    'is_active': isActive,
+  };
 }

@@ -1,9 +1,11 @@
 import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,10 +29,6 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             showCurrencyPicker(
               context: context,
-              showFlag: true,
-              showSearchField: true,
-              showCurrencyName: true,
-              showCurrencyCode: true,
               favorite: ['eur'],
               onSelect: (Currency currency) {
                 print('Select currency: ${currency.name}');

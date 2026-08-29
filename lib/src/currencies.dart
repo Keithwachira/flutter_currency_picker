@@ -1,3 +1,5 @@
+import 'additional_currencies.dart';
+
 //Order by Most traded currencies: https://en.wikipedia.org/wiki/Template:Most_traded_currencies
 List<Map<String, dynamic>> currencies = [
   {
@@ -505,7 +507,7 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": ",",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": true,
-    "symbol_on_left": true
+    "symbol_on_left": true,
   },
   {
     "code": "ARS",
@@ -701,6 +703,7 @@ List<Map<String, dynamic>> currencies = [
     "decimal_separator": ",",
     "space_between_amount_and_symbol": true,
     "symbol_on_left": false,
+    "is_active": false,
   },
   {
     "code": "BIF",
@@ -804,7 +807,7 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": ",",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": true,
-    "symbol_on_left": true
+    "symbol_on_left": true,
   },
   {
     "code": "DOP",
@@ -1051,7 +1054,7 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": ",",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": true,
-    "symbol_on_left": true
+    "symbol_on_left": true,
   },
   {
     "code": "LRD",
@@ -1090,7 +1093,7 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": " ",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": false,
-    "symbol_on_left": true
+    "symbol_on_left": true,
   },
   {
     "code": "MWK",
@@ -1441,7 +1444,7 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": ",",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": true,
-    "symbol_on_left": true
+    "symbol_on_left": true,
   },
   {
     "code": "TTD",
@@ -1520,6 +1523,7 @@ List<Map<String, dynamic>> currencies = [
     "decimal_separator": ",",
     "space_between_amount_and_symbol": true,
     "symbol_on_left": true,
+    "is_active": false,
   },
   {
     "code": "VND",
@@ -1545,7 +1549,18 @@ List<Map<String, dynamic>> currencies = [
     "thousands_separator": ",",
     "decimal_separator": ".",
     "space_between_amount_and_symbol": false,
-    "symbol_on_left": true
+    "symbol_on_left": true,
+    "search_terms": [
+      "Eastern Caribbean",
+      "Anguilla",
+      "Antigua and Barbuda",
+      "Dominica",
+      "Grenada",
+      "Montserrat",
+      "Saint Kitts and Nevis",
+      "Saint Lucia",
+      "Saint Vincent and the Grenadines",
+    ],
   },
   {
     "code": "YER",
@@ -1585,5 +1600,7 @@ List<Map<String, dynamic>> currencies = [
     "decimal_separator": ",",
     "space_between_amount_and_symbol": false,
     "symbol_on_left": true,
+    "is_active": false,
   },
+  ...additionalCurrencies,
 ];

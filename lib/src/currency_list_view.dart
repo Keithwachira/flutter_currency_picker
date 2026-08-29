@@ -87,7 +87,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
   void initState() {
     _searchController = TextEditingController();
 
-    _currencyList = _currencyService.getAll();
+    _currencyList = _currencyService.getActive();
 
     _filteredList = <Currency>[];
 
@@ -95,12 +95,15 @@ class _CurrencyListViewState extends State<CurrencyListView> {
       final List<String> currencyFilter =
           widget.currencyFilter!.map((code) => code.toUpperCase()).toList();
 
-      _currencyList
-          .removeWhere((element) => !currencyFilter.contains(element.code));
+      _currencyList.removeWhere(
+        (element) => !currencyFilter.contains(element.code),
+      );
     }
 
     if (widget.favorite != null) {
-      _favoriteList = _currencyService.findCurrenciesByCode(widget.favorite!);
+      _favoriteList = _currencyService.findActiveCurrenciesByCode(
+        widget.favorite!,
+      );
     }
 
     _filteredList.addAll(_currencyList);
@@ -123,16 +126,17 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: widget.showSearchField
               ? TextField(
                   controller: _searchController,
-                  decoration: widget.theme?.inputDecoration ?? InputDecoration(
-                    labelText: widget.searchHint ?? "Search",
-                    hintText: widget.searchHint ?? "Search",
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                  decoration: widget.theme?.inputDecoration ??
+                      InputDecoration(
+                        labelText: widget.searchHint ?? "Search",
+                        hintText: widget.searchHint ?? "Search",
+                        prefixIcon: const Icon(Icons.search),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0x338C98A8),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   onChanged: _filterSearchResults,
                 )
               : Container(),
@@ -141,7 +145,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: ListView(
             physics: widget.physics,
             children: [
-              if (_favoriteList != null) ...[
+              if (_favoriteList?.isNotEmpty == true) ...[
                 ..._favoriteList!.map<Widget>((currency) => _listRow(currency)),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -191,10 +195,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.showCurrencyCode) ...[
-                            Text(
-                              currency.code,
-                              style: titleTextStyle,
-                            ),
+                            Text(currency.code, style: titleTextStyle),
                           ],
                           if (widget.showCurrencyName) ...[
                             Text(
@@ -212,10 +213,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  currency.symbol,
-                  style: currencySignTextStyle,
-                ),
+                child: Text(currency.symbol, style: currencySignTextStyle),
               ),
             ],
           ),
@@ -243,28 +241,17 @@ class _CurrencyListViewState extends State<CurrencyListView> {
 
     return Text(
       CurrencyUtils.currencyToEmoji(currency),
-      style: TextStyle(
-        fontSize: widget.theme?.flagSize ?? 25,
-      ),
+      style: TextStyle(fontSize: widget.theme?.flagSize ?? 25),
     );
   }
 
   void _filterSearchResults(String query) {
-    List<Currency> searchResult = <Currency>[];
-
-    if (query.isEmpty) {
-      searchResult.addAll(_currencyList);
-    } else {
-      searchResult = _currencyList
-          .where(
-            (c) =>
-                c.name.toLowerCase().contains(query.toLowerCase().trim()) ||
-                c.code.toLowerCase().contains(query.toLowerCase().trim()),
-          )
-          .toList();
-    }
-
-    setState(() => _filteredList = searchResult);
+    setState(
+      () => _filteredList = _currencyService.search(
+        query,
+        currencies: _currencyList,
+      ),
+    );
   }
 
   TextStyle get _defaultTitleTextStyle => const TextStyle(fontSize: 17);
