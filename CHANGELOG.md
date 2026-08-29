@@ -1,9 +1,34 @@
+## 2.1.1
+
+* Synchronize the fork with upstream `2.0.22`.
+* Preserve upstream drag-handle support and corrected currency metadata.
+* Remove catalog entries now supplied by upstream.
+
 ## 2.1.0
 
 * Add current ISO 4217 currencies missing from the original catalog.
 * Add country and alternate-spelling search terms.
 * Keep obsolete currencies readable by code while hiding them from new selections.
 * Add currency catalog and search validation tests.
+
+## 2.0.22
+* Add more currencies:
+  - Uzbekistani Sum
+  - Venezuela Bolívar
+  - Iranian rial
+  - Libyan dinar
+  - Tajikistani somoni
+  - Turkmenistani manat
+* Add add an option to show the drag handle
+  ``` Dart
+  showCurrencyPicker(
+    context: context,
+    showDragHandle: true,
+    onSelect: (Currency currency) {
+      print('Select currency: ${currency.name}');
+    },
+  );
+  ```
 
 ## 2.0.21
 * Add more currencies:

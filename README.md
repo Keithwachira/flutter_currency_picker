@@ -12,7 +12,7 @@ A flutter package to select a currency from a list of currencies.
  currency_picker:
    git:
      url: https://github.com/yurisasuke/flutter_currency_picker.git
-     ref: v2.1.0
+     ref: v2.1.1
  ```
  
  In your dart file, import the library:

@@ -4,7 +4,7 @@ description: A flutter package to select a currency from a list of currencies.
 homepage: https://github.com/yurisasuke/flutter_currency_picker
 repository: https://github.com/yurisasuke/flutter_currency_picker
 
-version: 2.1.0
+version: 2.1.1
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  collection: ^1.17.2
+  collection: ^1.19.1
 
 flutter:
   assets:
@@ -21,5 +21,4 @@ flutter:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^2.2.0
-
+  lint: ^2.8.0
